@@ -54,7 +54,7 @@ contract AutomatedEscrow {
         require(_supplier != msg.sender, "Supplier cannot be the purchaser");
         require(_validator != msg.sender, "Validator cannot be the purchaser");
         
-        // 🚨 AUTOMATIZACIÓN 1: El contrato extrae los tokens del comprador
+        // El contrato extrae los tokens del comprador
         // Requiere: token.approve(escrowAddress, amount) previo
         bool success = token.transferFrom(msg.sender, address(this), _amount);
         require(success, "Token transfer from purchaser failed (Did you approve?)");
@@ -103,7 +103,7 @@ contract AutomatedEscrow {
         order.amount = 0; 
         order.state = State.Canceled; // Marca como finalizada
         
-        // 🚨 AUTOMATIZACIÓN 2: El contrato transfiere los tokens al proveedor
+        // El contrato transfiere los tokens al proveedor
         bool success = token.transfer(order.supplier, paymentAmount);
         require(success, "Token transfer to supplier failed");
         
