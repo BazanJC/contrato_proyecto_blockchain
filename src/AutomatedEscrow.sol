@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
-
-// ruta del contrato ERC-20
-import "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
 contract AutomatedEscrow {
     enum State { Pending, Delivered, Canceled }
@@ -17,9 +15,8 @@ contract AutomatedEscrow {
     
     mapping(uint256 => Order) public orders;
     uint256 public nextOrderId = 1;
-    
-    // Contrato del token ERC-20 a usar
-    IERC20 public immutable token; 
+
+    IERC20 public immutable TOKEN; 
     
     // Eventos
     event OrderCreated(uint256 indexed orderId, address purchaser, address supplier, uint256 amount);
@@ -33,7 +30,7 @@ contract AutomatedEscrow {
      */
     constructor(address _tokenAddress) {
         require(_tokenAddress != address(0), "Invalid token address");
-        token = IERC20(_tokenAddress);
+        TOKEN = IERC20(_tokenAddress);
     }
     
     /**
@@ -55,9 +52,8 @@ contract AutomatedEscrow {
         require(_validator != msg.sender, "Validator cannot be the purchaser");
         
         // El contrato extrae los tokens del comprador
-        // Requiere: token.approve(escrowAddress, amount) previo
-        bool success = token.transferFrom(msg.sender, address(this), _amount);
-        require(success, "Token transfer from purchaser failed (Did you approve?)");
+        // Requiere: TOKEN.approve(escrowAddress, amount) previo
+        TOKEN.transferFrom(msg.sender, address(this), _amount);
         
         uint256 orderId = nextOrderId++;
         
@@ -104,7 +100,7 @@ contract AutomatedEscrow {
         order.state = State.Canceled; // Marca como finalizada
         
         // El contrato transfiere los tokens al proveedor
-        bool success = token.transfer(order.supplier, paymentAmount);
+        bool success = TOKEN.transfer(order.supplier, paymentAmount);
         require(success, "Token transfer to supplier failed");
         
         emit FundsWithdrawn(_orderId, msg.sender, paymentAmount);
@@ -127,7 +123,7 @@ contract AutomatedEscrow {
         order.state = State.Canceled;
         
         // Devuelve los tokens al comprador
-        bool success = token.transfer(order.purchaser, refundAmount);
+        bool success = TOKEN.transfer(order.purchaser, refundAmount);
         require(success, "Token refund failed");
         
         emit OrderCanceled(_orderId);
