@@ -1,66 +1,56 @@
-## Foundry
+# 🚀 Contrato de Proyecto Blockchain
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## 📝 Descripción del Proyecto
 
-Foundry consists of:
+Este repositorio contiene el código fuente de un **Contrato Inteligente** (Smart Contract) desarrollado para gestionar **<Describe el propósito principal del contrato: ej. el registro inmutable de acuerdos, la votación en una DAO, la emisión de tokens, etc.>**
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### 💡 Introducción: ¿En qué consiste el Contrato?
 
-## Documentation
+El Contrato Inteligente sirve como la **columna vertebral lógica y funcional** de este proyecto. Es un **acuerdo digital auto-ejecutable y transparente** que reside en la blockchain de **<Nombre de la Blockchain, ej: Ethereum / Polygon>** y define las reglas inmutables de un proceso específico.
 
-https://book.getfoundry.sh/
+* **Acuerdo Codificado:** Toma los términos y condiciones de un acuerdo tradicional y los traduce a **código de programación (Solidity)**, asegurando que las reglas no puedan ser alteradas una vez desplegadas.
+* **Automatización:** El contrato automáticamente **ejecuta las cláusulas del acuerdo** cuando se cumplen ciertas condiciones, eliminando la necesidad de confiar en un intermediario humano o legal.
+* **Transparencia:** Todas las transacciones y el estado del acuerdo son **públicos y verificables** en la *blockchain*, garantizando la auditoría y la honestidad.
 
-## Usage
+En resumen, el objetivo es establecer un **sistema justo, eficiente y descentralizado** para **<Reafirma el objetivo principal, ej: la administración de un DAO, la liberación de pagos por hitos, etc.>** sin riesgo de censura o manipulación.
 
-### Build
+## ⚙️ Tecnologías y Herramientas
 
-```shell
-$ forge build
-```
+La solución fue construida utilizando las siguientes tecnologías:
 
-### Test
+* **Solidity:** Lenguaje de programación orientado a contratos inteligentes.
+* **<Hardhat / Truffle>:** Entorno de desarrollo, testing y despliegue.
+* **<Ethers.js / Web3.js>:** Librería de JavaScript para interactuar con el contrato.
+* **OpenZeppelin (Opcional):** Librerías para contratos seguros y probados.
 
-```shell
-$ forge test
-```
+## 🏗️ Estructura del Repositorio
 
-### Format
+| Carpeta/Archivo | Propósito |
+| :--- | :--- |
+| `contracts/` | Contiene el código fuente del contrato inteligente (`.sol`). |
+| `scripts/` | Contiene los scripts para el despliegue (deployment) y la interacción. |
+| `test/` | Contiene los archivos de prueba para verificar la lógica del contrato. |
+| `artifacts/` | (Generado) Archivos ABI y bytecode después de la compilación. |
+| `hardhat.config.js` | Archivo de configuración principal del entorno Hardhat/Truffle. |
 
-```shell
-$ forge fmt
-```
+## 🌟 Contrato Principal
 
-### Gas Snapshots
+El contrato inteligente principal es: **`<AutomatedEscrow.sol>`**.
 
-```shell
-$ forge snapshot
-```
+Sus funcionalidades clave incluyen:
 
-### Anvil
+* **`<Función 1: ej. Registrar Nuevo Acuerdo>`**: Describe brevemente lo que hace.
+* **`<Función 2: ej. Transferir Fondos/Tokens>`**: Describe brevemente lo que hace.
+* **`<Función 3: ej. Consultar Estado>`**: Describe brevemente lo que hace.
 
-```shell
-$ anvil
-```
+## 🏁 Guía de Despliegue y Pruebas
 
-### Deploy
+Sigue estos pasos para compilar, probar y desplegar el contrato en tu entorno local o red de prueba.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+Clona el repositorio e instala las dependencias:
 
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+```bash
+git clone [https://github.com/BazanJC/contrato_proyecto_blockchain.git](https://github.com/BazanJC/contrato_proyecto_blockchain.git)
+cd contrato_proyecto_blockchain
+npm install
+# o yarn install
